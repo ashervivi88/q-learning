@@ -26,14 +26,14 @@ public class QLearning {
     public static void main(String args[]) {
         QLearning ql = new QLearning();
 
-        ql.init();
+        ql.init("resources/maze.txt");
         ql.calculateQ();
         ql.printQ();
         ql.printPolicy();
     }
 
-    public void init() {
-        File file = new File("resources/maze.txt");
+    public void init(String F) {
+        File file = new File(F);
 
         R = new int[statesCount][statesCount];
         Q = new double[statesCount][statesCount];

@@ -1,4 +1,3 @@
-package com.technobium.rl;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

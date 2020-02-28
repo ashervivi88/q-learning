@@ -1,8 +1,6 @@
-package com.technobium.rl;
+//package com.technobium.rl;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -50,7 +48,7 @@ public class QLearning {
             // Read the maze from the input file
             while ((content = fis.read()) != -1) {
                 char c = (char) content;
-                if (c != '0' && c != 'F' && c != 'X') {
+                if (c != '0' && c != '2' && c != '1') {
                     continue;
                 }
                 maze[i][j] = c;
@@ -75,7 +73,7 @@ public class QLearning {
                 }
 
                 // If not in final state or a wall try moving in all directions in the maze
-                if (maze[i][j] != 'F') {
+                if (maze[i][j] != '2') {
 
                     // Try to move left in the maze
                     int goLeft = j - 1;
@@ -83,7 +81,7 @@ public class QLearning {
                         int target = i * mazeWidth + goLeft;
                         if (maze[i][goLeft] == '0') {
                             R[k][target] = 0;
-                        } else if (maze[i][goLeft] == 'F') {
+                        } else if (maze[i][goLeft] == '2') {
                             R[k][target] = reward;
                         } else {
                             R[k][target] = penalty;
@@ -96,7 +94,7 @@ public class QLearning {
                         int target = i * mazeWidth + goRight;
                         if (maze[i][goRight] == '0') {
                             R[k][target] = 0;
-                        } else if (maze[i][goRight] == 'F') {
+                        } else if (maze[i][goRight] == '2') {
                             R[k][target] = reward;
                         } else {
                             R[k][target] = penalty;
@@ -109,7 +107,7 @@ public class QLearning {
                         int target = goUp * mazeWidth + j;
                         if (maze[goUp][j] == '0') {
                             R[k][target] = 0;
-                        } else if (maze[goUp][j] == 'F') {
+                        } else if (maze[goUp][j] == '2') {
                             R[k][target] = reward;
                         } else {
                             R[k][target] = penalty;
@@ -122,7 +120,7 @@ public class QLearning {
                         int target = goDown * mazeWidth + j;
                         if (maze[goDown][j] == '0') {
                             R[k][target] = 0;
-                        } else if (maze[goDown][j] == 'F') {
+                        } else if (maze[goDown][j] == '2') {
                             R[k][target] = reward;
                         } else {
                             R[k][target] = penalty;
@@ -193,7 +191,7 @@ public class QLearning {
         int i = state / mazeWidth;
         int j = state - i * mazeWidth;
 
-        return maze[i][j] == 'F';
+        return maze[i][j] == '2';
     }
 
     int[] possibleActionsFromState(int state) {
@@ -254,5 +252,41 @@ public class QLearning {
             }
             System.out.println();
         }
+    }
+
+    void QandPolicyToFile(int fileNum)
+            throws IOException {
+
+        String qOutput = "Q matrix ";
+        System.out.println("\n" + qOutput);
+
+        for (int i = 0; i < Q.length; i++) {
+
+            String qIntroLine = "From state " + i + ":  ";
+            System.out.print(qIntroLine);
+            qOutput += qIntroLine;
+
+            for (int j = 0; j < Q[i].length; j++) {
+                System.out.printf("%6.2f ", (Q[i][j]));
+                qOutput += " "+ Math.round((Q[i][j])*100)/100;
+            }
+            System.out.println();
+            qOutput += '\n';
+        }
+
+        String pOutput = "\nPrint policy";
+        System.out.println(pOutput+ "\n");
+
+        for (int i = 0; i < statesCount; i++) {
+            String policyLine = "From state " + i + " goto state " + getPolicyFromState(i);
+            System.out.println(policyLine);
+            pOutput += "\n" + policyLine;
+        }
+
+            String fileName = "QOutput"+fileNum+".txt";
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(qOutput + pOutput);
+            writer.close();
+
     }
 }

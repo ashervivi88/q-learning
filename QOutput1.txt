@@ -1,15 +1,16 @@
-Q matrix From state 0:   -1 63 -1 73 -1 -1 -1 -1 -1
-From state 1:   66 -1 81 -1 81 -1 -1 -1 -1
-From state 2:   -1 63 -1 -1 -1 91 -1 -1 -1
-From state 3:   66 -1 -1 -1 81 -1 66 -1 -1
-From state 4:   -1 63 -1 73 -1 91 -1 73 -1
+Q matrix 
+From state 0:   -1 73 -1 64 -1 -1 -1 -1 -1
+From state 1:   66 -1 81 -1 71 -1 -1 -1 -1
+From state 2:   -1 73 -1 -1 -1 91 -1 -1 -1
+From state 3:   66 -1 -1 -1 71 -1 66 -1 -1
+From state 4:   -1 73 -1 64 -1 91 -1 73 -1
 From state 5:   -1 -1 -1 -1 -1 -1 -1 -1 -1
-From state 6:   -1 -1 -1 73 -1 -1 -1 73 -1
-From state 7:   -1 -1 -1 -1 81 -1 66 -1 81
+From state 6:   -1 -1 -1 64 -1 -1 -1 73 -1
+From state 7:   -1 -1 -1 -1 71 -1 66 -1 81
 From state 8:   -1 -1 -1 -1 -1 91 -1 73 -1
 
 Print policy
-From state 0 goto state 3
+From state 0 goto state 1
 From state 1 goto state 2
 From state 2 goto state 5
 From state 3 goto state 4

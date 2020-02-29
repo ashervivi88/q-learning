@@ -1,6 +1,12 @@
+/***
+ * Ashley Kim 2/29/20
+ * The purpose of this code is to read in a maze and use Q learning in order to solve it
+ * Modified from technobium github file
+ ***/
 //package com.technobium.rl;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -254,11 +260,11 @@ public class QLearning {
         }
     }
 
-    void QandPolicyToFile(int fileNum)
+    void QandPolicyToFile(int fileNum) //Extra method that returns Q and policy results to file
             throws IOException {
 
-        String qOutput = "Q matrix ";
-        System.out.println("\n" + qOutput);
+        String qOutput = "Q matrix \n";
+        System.out.print("\n"+qOutput);
 
         for (int i = 0; i < Q.length; i++) {
 
@@ -275,13 +281,14 @@ public class QLearning {
         }
 
         String pOutput = "\nPrint policy";
-        System.out.println(pOutput+ "\n");
+        System.out.print(pOutput+ "\n");
 
         for (int i = 0; i < statesCount; i++) {
             String policyLine = "From state " + i + " goto state " + getPolicyFromState(i);
             System.out.println(policyLine);
             pOutput += "\n" + policyLine;
         }
+        System.out.println("\n");
 
             String fileName = "QOutput"+fileNum+".txt";
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));

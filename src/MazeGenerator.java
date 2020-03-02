@@ -8,6 +8,13 @@ import java.io.*;
 import java.util.Random;
 
 public class MazeGenerator {
+    /*
+    Purpose: Generate random 3x3 maze
+    Inputs: number of runs
+    Outputs: nothing, but creates string that is used when writeFile method is called
+    Conditions: Throws exception if can't write file
+    */
+
     public void generate(int numRuns) throws IOException {
 
         Random rand = new Random();
@@ -39,7 +46,12 @@ public class MazeGenerator {
     }
     }
 
-        //writes file with maze named based on number of runs
+        /*
+        Purpose: writes file with maze named based on number of runs
+        Inputs: string and number used to label file
+        Outputs: nothing, but creates new file based on inputs
+        Conditions: Throws exception if can't write file
+        */
         public void writeFile(String output, int fileNum)
   throws IOException {
             String fileName = "maze"+fileNum+".txt";

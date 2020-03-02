@@ -260,7 +260,11 @@ public class QLearning {
         }
     }
 
-    void QandPolicyToFile(int fileNum) //Extra method that returns Q and policy results to file
+
+    //Extra method that returns Q and policy results to file
+    //Inputs: file number to assist in naming
+    //
+    void QandPolicyToFile(int fileNum)
             throws IOException {
 
         String qOutput = "Q matrix \n";
